@@ -1,4 +1,4 @@
-import Fastify, { fastify } from 'fastify';
+import Fastify from 'fastify';
 
 export async function build () {
   const fastify = Fastify({ logger: true });
