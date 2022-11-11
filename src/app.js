@@ -1,11 +1,7 @@
 import Fastify from 'fastify';
 import sensible from '@fastify/sensible';
-import { general } from './services/general/index.js';
-import { createTodo } from './services/todos/create-todo.js';
-import { getManyTodo } from './services/todos/get-many-todos.js';
-import { getTodo } from './services/todos/get-todo.js';
-import { updateTodo } from './services/todos/update-todo.js';
-import { deleteTodo } from './services/todos/delete-todo.js';
+import openAPIGlue from 'fastify-openapi-glue';
+import swagger from '@fastify/swagger';
 
 const prefix = '/api';
 
@@ -13,17 +9,23 @@ export async function build () {
   const fastify = Fastify({ logger: true });
   fastify.register(sensible);
 
-  fastify.get(prefix, general);
+  const openAPIGlueOptions = {
+    prefix
+  };
 
-  fastify.post(`${prefix}/todo`, createTodo);
+  const swaggerOptions = {
+    exposeRoute: true
+  };
 
-  fastify.get(`${prefix}/todo`, getManyTodo);
+  fastify.register(swagger, swaggerOptions);
+  fastify.register(openAPIGlue, openAPIGlueOptions);
 
-  fastify.get(`${prefix}/todo/:todoId`, getTodo);
-
-  fastify.put(`${prefix}/todo/:todoId`, updateTodo);
-
-  fastify.delete(`${prefix}/todo/:todoId`, deleteTodo);
+  // fastify.get(prefix, general);
+  // fastify.post(`${prefix}/todo`, createTodo);
+  // fastify.get(`${prefix}/todo`, getManyTodo);
+  // fastify.get(`${prefix}/todo/:todoId`, getTodo);
+  // fastify.put(`${prefix}/todo/:todoId`, updateTodo);
+  // fastify.delete(`${prefix}/todo/:todoId`, deleteTodo);
 
   return fastify;
 }
