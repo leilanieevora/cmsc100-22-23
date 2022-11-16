@@ -1,4 +1,4 @@
-export const general= {
+export const general = {
   '/': {
     get: {
       summary: 'API General',
@@ -22,4 +22,4 @@ export const general= {
       }
     }
   }
-}
+};
