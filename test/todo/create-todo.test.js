@@ -6,7 +6,7 @@ tap.mochaGlobals();
 
 const prefix = '/api';
 
-describe('/api should work', async () => {
+describe('create todo should work', async () => {
   let app;
 
   before(async () => {

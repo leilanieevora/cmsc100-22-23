@@ -4,6 +4,7 @@ import { deleteTodo } from './todos/delete-todo.js';
 import { getManyTodo } from './todos/get-many-todos.js';
 import { getTodo } from './todos/get-todo.js';
 import { updateTodo } from './todos/update-todo.js';
+import { registerUser } from './user/register-user.js';
 
 export class Service {
   constructor (app) {
@@ -16,4 +17,5 @@ export class Service {
   getManyTodo = getManyTodo
   getTodo = getTodo
   updateTodo = updateTodo
+  registerUser = registerUser
 }
